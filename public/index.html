@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Customer Service</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <h1>E-Customer Service</h1>
+    <div id="login-container">
+      <form id="login-form">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Login</button>
+      </form>
+      <p>Don't have an account? <a href="register.html">Register</a></p>
+    </div>
+    <div id="complaint-form-container" style="display:none;">
+      <h2>File a Complaint</h2>
+      <form id="complaint-form">
+        <label for="complaintType">Complaint Type:</label>
+        <select id="complaintType" name="complaintType" required>
+          <option value="Bug">Bug</option>
+          <option value="Feature Request">Feature Request</option>
+          <option value="Other">Other</option>
+        </select>
+        <label for="complaintDescription">Description:</label>
+        <textarea id="complaintDescription" name="complaintDescription" rows="4" required></textarea>
+        <button type="submit">Submit Complaint</button>
+      </form>
+      <button id="logout-button" style="margin-top: 10px; display:none;">Logout</button>
+    </div>
+    <div id="complaints-container" style="display:none;">
+      <h2>Complaints</h2>
+      <ul id="complaints-list"></ul>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
