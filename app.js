@@ -57,6 +57,6 @@ app.post('/login', (req, res) => {
 });
 
 // Start the server to listen on the specified local IP address and port
-app.listen(port, '192.168.1.115', () => {
-  console.log(`Server is running on http://192.168.1.115:${port}`);
+app.listen(port, '127.0.0.1', () => {
+  console.log(`Server is running on http://127.0.0.1:${port}`);
 });

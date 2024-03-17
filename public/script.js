@@ -3,7 +3,7 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     
     let username = document.getElementById('username').value;
     let password = document.getElementById('password').value;
-    
+
     fetch('/login', {
       method: 'POST',
       headers: {
@@ -20,8 +20,10 @@ document.getElementById('login-form').addEventListener('submit', function(event)
     })
     .then(data => {
       if (data.user.role === 'admin') {
-        showAdminView();
-        fetchComplaints(username); // Call fetchComplaints here
+          showAdminView();
+          // Show all the complaints posted by username='user'
+          var showComplaintsBy='user';
+        fetchComplaints(showComplaintsBy); // Call fetchComplaints here
       } else {
         showUserView();
       }
