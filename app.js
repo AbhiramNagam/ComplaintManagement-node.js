@@ -1,3 +1,5 @@
+// app.js
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -55,6 +57,53 @@ app.post('/login', (req, res) => {
       res.status(500).json({ message: 'Failed to log in' });
     });
 });
+
+// Endpoint to register a new user
+app.post('/register', (req, res) => {
+  const { username, password } = req.body;
+
+  // Check if the user is an admin (prevent admin registration)
+  if (req.user.role === 'admin') {
+    return res.status(403).json({ message: "Admins cannot register" });
+  }
+
+  // Validate user input (e.g., check for unique username)
+  // Perform necessary validation and hashing of the password
+  
+  // Insert new user record into the database
+  db.query('INSERT INTO users (username, password, role) VALUES (?, ?, ?)', [username, password, 'customer'])
+    .then(result => {
+      res.status(201).json({ message: 'User registered successfully' });
+    })
+    .catch(error => {
+      console.error('Error registering user:', error);
+      res.status(500).json({ message: 'Failed to register user' });
+    });
+});
+
+// Endpoint to register a new user
+app.post('/register', (req, res) => {
+  const { username, password } = req.body;
+
+  // For now, let's assume only customers can register.
+  const role = 'customer';
+
+  // Validate user input (e.g., check for unique username)
+  // Perform necessary validation and hashing of the password
+  // For simplicity, let's assume validation and hashing are done elsewhere
+
+  // Insert new user record into the database
+  db.query('INSERT INTO users (username, password, role) VALUES (?, ?, ?)', [username, password, role])
+    .then(result => {
+      res.status(201).json({ message: 'User registered successfully' });
+    })
+    .catch(error => {
+      console.error('Error registering user:', error);
+      res.status(500).json({ message: 'Failed to register user' });
+    });
+});
+
+
 
 // Start the server to listen on the specified local IP address and port
 app.listen(port, '127.0.0.1', () => {
